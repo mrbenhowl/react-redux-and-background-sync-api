@@ -1,15 +1,29 @@
+import 'regenerator-runtime/runtime'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import runtime from 'serviceworker-webpack-plugin/lib/runtime'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import createSagaMiddleware from 'redux-saga'
+import reducers from './reducers'
+import sagas from './sagas'
+import './swDetails'
+import App from './components/app'
 
-const App = () => {
-  return <div>Hello world</div>
-}
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore(
+  reducers,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+)
+sagaMiddleware.run(sagas)
 
-ReactDOM.render(<App />, document.getElementById('root'))
+const Root = () => (
+  <Provider store={store}>
+    <>
+      <div>Hello world</div>
+      <App />
+    </>
+  </Provider>
+)
 
-if ('serviceWorker' in navigator) {
-  const registration = runtime.register()
-} else {
-  console.error('browser does not support service workers')
-}
+ReactDOM.render(<Root />, document.getElementById('root'))

@@ -3,25 +3,14 @@ const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin')
-const { InjectManifest, GenerateSW } = require('workbox-webpack-plugin')
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
   filename: './index.html'
 })
 
-const injectManifestPlugin = new InjectManifest({
-  swSrc: path.join('src', 'sw.js')
-})
-
-const generateSWPlugin = new GenerateSW({
-  swDest: 'sw.js',
-  clientsClaim: true,
-  skipWaiting: true
-})
-
 const serviceWorkerPlugin = new ServiceWorkerWebpackPlugin({
-  entry: path.join(__dirname, 'src/sw.js'),
+  entry: path.join(__dirname, 'src/sw.js')
 })
 
 module.exports = {
