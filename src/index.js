@@ -7,9 +7,10 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import createSagaMiddleware from 'redux-saga'
 import reducers from './reducers'
 import sagas from './sagas'
-import './swDetails'
+import registerSW from './swDetails'
 import App from './components/app'
 
+registerSW()
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   reducers,

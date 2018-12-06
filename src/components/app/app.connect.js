@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { actions } from '../../reducers/personalDetails.reducer'
+import { actions } from '../../reducers/users.reducer'
 
 const mapDispatchToState = dispatch => ({
-  savePersonalDetails: () => dispatch(actions.savePersonalDetails())
+  addUser: () => dispatch(actions.addUser())
 })
 
 export default connect(

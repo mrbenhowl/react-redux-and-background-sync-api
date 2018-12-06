@@ -1,8 +1,6 @@
 import { all } from 'redux-saga/effects'
-import personalDetailsSagas from './personalDetails.saga'
+import sagasForUsers from './users.saga'
 
 export default function * rootSaga () {
-  yield all([
-    ...personalDetailsSagas
-  ])
+  yield all([...sagasForUsers])
 }

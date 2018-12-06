@@ -1,8 +1,8 @@
 import React from 'react'
 
-const App = ({ savePersonalDetails }) => (
+const App = ({ addUser }) => (
   <div>
-    <button onClick={savePersonalDetails}>press me</button>
+    <button onClick={addUser}>press me</button>
   </div>
 )
 
